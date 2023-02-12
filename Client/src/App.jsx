@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className=" 	 bg-[#090C25]">
-        <main className=" bg-[#090C25] w-full min-h-[calc(100vh-73px)]">
+        <main className=" bg-[#090C25] w-full">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create-post" element={<CreatePost />} />

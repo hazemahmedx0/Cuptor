@@ -11,14 +11,7 @@ html {
   height: 100%;
   position: relative;
   overflow-x: hidden;
-}
-
-.bg11 {
-  height: 100vh;
-  z-index: -999999;
   background-color: #090c25;
-  position: absolute;
-  width: 100vw;
 }
 
 @media screen and (min-width: 480px) {
