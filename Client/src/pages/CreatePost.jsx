@@ -21,11 +21,16 @@ const CreatePost = () => {
   const submitHandler = async (e) => {
     e.preventDefault()
 
+    const apiUrl =
+      import.meta.env.mode === 'production'
+        ? import.meta.env.VITE_HOST
+        : 'http://localhost:8080/api/v1/post'
+
     if (form.prompt && form.photo) {
       setLoading(true)
 
       try {
-        const response = await fetch('http://localhost:8080/api/v1/post', {
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -50,11 +55,16 @@ const CreatePost = () => {
     setForm({ ...form, prompt: randomPrompt })
   }
   const generateImage = async () => {
+    const apiUrldalle =
+      import.meta.env.mode === 'production'
+        ? import.meta.env.VITE_HOST_DALLE
+        : 'http://localhost:8080/api/v1/dalle'
+
     if (form.prompt) {
       try {
         setGenImg(true)
         setAlt(form.prompt)
-        const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        const response = await fetch(apiUrldalle, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt: form.prompt }),
@@ -62,7 +72,7 @@ const CreatePost = () => {
         const data = await response.json()
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` })
       } catch (error) {
-        alert(error)
+        alert('a')
       } finally {
         setGenImg(false)
       }

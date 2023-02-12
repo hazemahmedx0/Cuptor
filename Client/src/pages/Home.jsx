@@ -1,62 +1,73 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Card, FormField, Hero, Loader } from "../Components";
-import { Transition } from "@headlessui/react";
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { Card, FormField, Hero, Loader } from '../Components'
+import { Transition } from '@headlessui/react'
+
+import dotenv from 'dotenv'
+
+// dotenv.config()
 
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
+    return data.map((post) => <Card key={post._id} {...post} />)
   }
 
   return (
     <h2 className="col-span-4	 mt-5 font-bold text-xl uppercase text-stone-400 text-center">
       {title}
     </h2>
-  );
-};
+  )
+}
 
 const Home = () => {
-  const [loading, setLoading] = useState(false);
-  const [allPosts, setAllPosts] = useState(null);
-  const [searchText, setSearchText] = useState(null);
-  const [searchedResults, setSearchedResults] = useState(null);
-  const [searchTimeout, setSerachTimeout] = useState(null);
+  console.log(import.meta.env)
+  const [loading, setLoading] = useState(false)
+  const [allPosts, setAllPosts] = useState(null)
+  const [searchText, setSearchText] = useState(null)
+  const [searchedResults, setSearchedResults] = useState(null)
+  const [searchTimeout, setSerachTimeout] = useState(null)
 
-  const [isShowing, setIsShowing] = useState(false);
+  const [isShowing, setIsShowing] = useState(false)
+
+  // console.log(process.env)
 
   useEffect(() => {
-    setIsShowing(true);
-  }, []);
+    setIsShowing(true)
+  }, [])
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setLoading(true);
-
+      setLoading(true)
+      const apiUrl =
+        import.meta.env.mode === 'production'
+          ? import.meta.env.VITE_HOST
+          : 'http://localhost:8080/api/v1/post'
+      console.log(apiUrl)
       try {
-        const response = await fetch("http://localhost:8080/api/v1/post", {
-          method: "GET",
+        const response = await fetch(apiUrl, {
+          method: 'GET',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
-        });
+        })
 
         if (response.ok) {
-          const result = await response.json();
-          setAllPosts(result.data.reverse());
+          const result = await response.json()
+          setAllPosts(result.data.reverse())
         }
       } catch (error) {
-        alert(error);
+        alert(error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchPosts();
-  }, []);
+    fetchPosts()
+  }, [])
 
   const searchHandler = (e) => {
-    clearTimeout(searchTimeout);
-    setSearchText(e.target.value);
+    clearTimeout(searchTimeout)
+    setSearchText(e.target.value)
 
     setSerachTimeout(
       setTimeout(() => {
@@ -64,12 +75,12 @@ const Home = () => {
           (item) =>
             item.name.toLowerCase().includes(searchText.toLowerCase()) ||
             item.prompt.toLowerCase().includes(searchText.toLowerCase())
-        );
+        )
 
-        setSearchedResults(searchRes);
+        setSearchedResults(searchRes)
       }, 500)
-    );
-  };
+    )
+  }
   return (
     <>
       <Transition
@@ -127,7 +138,7 @@ const Home = () => {
                 <>
                   {searchText && (
                     <h2 className="font-medium text-gray-400 mb-3	">
-                      Showing results for{" "}
+                      Showing results for{' '}
                       <span className="text-orange-300 text-bold">
                         {searchText}
                       </span>
@@ -149,10 +160,10 @@ const Home = () => {
               )}
             </div>
           </section>
-        </div>{" "}
+        </div>{' '}
       </Transition>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
