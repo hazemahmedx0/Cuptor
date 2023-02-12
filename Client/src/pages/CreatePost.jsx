@@ -114,7 +114,7 @@ const CreatePost = () => {
                 </svg>
                 <span> home</span>
               </Link>
-              <h1 className="  text-[#222328]  text-left text-white text-2xl">
+              <h1 className="   text-left text-white text-2xl">
                 Unleash Your Creativity with AI
               </h1>
               <form className="mt-8 max-w-3xl" onSubmit={submitHandler}>

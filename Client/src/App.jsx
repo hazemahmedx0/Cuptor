@@ -1,9 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
-import { Header } from "./Components";
 function App() {
   return (
     <BrowserRouter>

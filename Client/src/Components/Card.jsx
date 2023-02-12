@@ -1,5 +1,5 @@
 import React from "react";
-import { downloadImage, getRandomColor } from "../utils";
+import { downloadImage } from "../utils";
 import { download } from "../assets";
 
 const Card = ({ _id, name, prompt, photo }) => {
