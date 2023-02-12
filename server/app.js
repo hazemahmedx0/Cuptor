@@ -1,10 +1,13 @@
 import express from 'express'
 import morgan from 'morgan'
+import cors from 'cors'
 
 import postRoutes from './routes/postRoutes.js'
 import dalleRoutes from './routes/dalleRoutes.js'
 
 const app = express()
+
+app.use(cors())
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'))
