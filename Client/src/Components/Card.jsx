@@ -1,12 +1,12 @@
-import React from "react";
-import { downloadImage } from "../utils";
-import { download } from "../assets";
+import React from 'react'
+import { downloadImage } from '../utils'
+import { download } from '../assets'
 
 const Card = ({ _id, name, prompt, photo }) => {
   return (
-    <div className="rounded-xl group relative sahdow-card hover:shadow-cardhover card">
+    <div className=" transition ease-in-out rounded-xl group relative border  border-indigo-500/0 hover:ring-[#9333ea] hover:border hover:border-[#9333ea]  card">
       <img
-        className="w-full h-auto object-cover rounded-xl"
+        className="w-full h-full object-cover rounded-xl"
         src={photo}
         alt={prompt}
       />
@@ -36,7 +36,7 @@ const Card = ({ _id, name, prompt, photo }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

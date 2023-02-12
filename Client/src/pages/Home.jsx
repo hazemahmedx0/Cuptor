@@ -25,7 +25,6 @@ const Home = () => {
   const [searchText, setSearchText] = useState(null)
   const [searchedResults, setSearchedResults] = useState(null)
   const [searchTimeout, setSerachTimeout] = useState(null)
-
   const [isShowing, setIsShowing] = useState(false)
 
   useEffect(() => {
@@ -72,7 +71,6 @@ const Home = () => {
             item.name.toLowerCase().includes(searchText.toLowerCase()) ||
             item.prompt.toLowerCase().includes(searchText.toLowerCase())
         )
-
         setSearchedResults(searchRes)
       }, 500)
     )
@@ -142,10 +140,12 @@ const Home = () => {
                   )}
                   <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3 max-w-7xl	p-2">
                     {searchText ? (
-                      <RenderCards
-                        data={searchedResults}
-                        title="No search result found"
-                      />
+                      <>
+                        <RenderCards
+                          data={searchedResults}
+                          title="No search result found"
+                        />
+                      </>
                     ) : (
                       <>
                         <RenderCards data={allPosts} title="No posts found" />
