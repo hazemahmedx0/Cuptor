@@ -1,3 +1,1 @@
-# Cuptor
-
 Cuptor Ai tool
