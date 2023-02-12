@@ -1,9 +1,15 @@
-import express from 'express';
-import * as dotenv from 'dotenv';
+import express from 'express'
+import * as dotenv from 'dotenv'
 
-dotenv.config();
+import postController from '../controllers/postController.js'
 
-const router = express.Router();
+dotenv.config()
 
-export default router;
+const router = express.Router()
 
+
+router.route('/').get(postController.getPosts)
+
+router.route('/').post(postController.createPost)
+
+export default router
