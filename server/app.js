@@ -1,8 +1,8 @@
 import express from 'express'
 import morgan from 'morgan'
 
-import postRoutes from './routes/postRoutes.js';
-import dalleRoutes from './routes/dalleRoutes.js';
+import postRoutes from './routes/postRoutes.js'
+import dalleRoutes from './routes/dalleRoutes.js'
 
 const app = express()
 
