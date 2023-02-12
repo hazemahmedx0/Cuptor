@@ -1,15 +1,7 @@
 /* This example requires Tailwind CSS v3.0+ */
 import { useState } from "react";
-import { Dialog } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { GridBG, logo } from "../assets";
-// const navigation = [
-//   { name: "Product", href: "#" },
-//   { name: "Features", href: "#" },
-//   { name: "Marketplace", href: "#" },
-//   { name: "Company", href: "#" },
-// ];
 
 const Hero = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

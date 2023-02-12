@@ -1,5 +1,6 @@
 import { surpriseMePrompts } from "../constants";
 import FileSaver from "file-saver";
+
 export function getRandomPrompt(prompt) {
   const randomIndex = Math.floor(Math.random() * surpriseMePrompts.length);
   const randomPrompt = surpriseMePrompts[randomIndex];
@@ -10,11 +11,6 @@ export function getRandomPrompt(prompt) {
 }
 
 export async function downloadImage(_id, photo) {
+  // To download image
   FileSaver.saveAs(photo, `download-${_id}.jpg`);
-}
-
-export function getRandomColor() {
-  const tailwindColors = ["red", "orange"];
-
-  return tailwindColors[Math.floor(Math.random() * tailwindColors.length)];
 }
