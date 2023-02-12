@@ -7,7 +7,6 @@ dotenv.config()
 
 const router = express.Router()
 
-
 router.route('/').get(postController.getPosts)
 
 router.route('/').post(postController.createPost)
