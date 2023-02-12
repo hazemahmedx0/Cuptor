@@ -1,87 +1,87 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { previewimg } from "../assets";
-import { FormField, Loader } from "../Components";
-import { getRandomPrompt } from "../utils";
-import { Transition } from "@headlessui/react";
+import React, { useEffect } from 'react'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { previewimg } from '../assets'
+import { FormField, Loader } from '../Components'
+import { getRandomPrompt } from '../utils'
+import { Transition } from '@headlessui/react'
 
 const CreatePost = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const [form, setForm] = useState({
-    name: "",
-    prompt: "",
+    name: '',
+    prompt: '',
     photo:
-      "https://www.shutterstock.com/image-illustration/3d-shiny-red-number-collection-260nw-120044458.jpg",
-  });
+      'https://www.shutterstock.com/image-illustration/3d-shiny-red-number-collection-260nw-120044458.jpg',
+  })
 
-  const [genImg, setGenImg] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [alt, setAlt] = useState(null);
+  const [genImg, setGenImg] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [alt, setAlt] = useState(null)
 
   const submitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (form.prompt && form.photo) {
-      setLoading(true);
+      setLoading(true)
 
       try {
-        const response = await fetch("http://localhost:8080/api/v1/post", {
-          method: "POST",
+        const response = await fetch('http://localhost:8080/api/v1/post', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(form),
-        });
+        })
 
-        await response.json();
-        navigate("/");
+        await response.json()
+        navigate('/')
       } catch (error) {
-        alert(error);
+        alert(error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     } else {
-      alert("Please enter a prompt and generate an image");
+      alert('Please enter a prompt and generate an image')
     }
-  };
+  }
 
   const SurpiiseMeHandler = () => {
-    const randomPrompt = getRandomPrompt(form.prompt);
-    setForm({ ...form, prompt: randomPrompt });
-  };
+    const randomPrompt = getRandomPrompt(form.prompt)
+    setForm({ ...form, prompt: randomPrompt })
+  }
   const generateImage = async () => {
     if (form.prompt) {
       try {
-        setGenImg(true);
-        setAlt(form.prompt);
-        const response = await fetch("http://localhost:8080/api/v1/dalle", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        setGenImg(true)
+        setAlt(form.prompt)
+        const response = await fetch('http://localhost:8080/api/v1/dalle', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ prompt: form.prompt }),
-        });
-        const data = await response.json();
-        setForm({ ...form, photo: `data:/image/jpeg;base64,${data.photo}` });
+        })
+        const data = await response.json()
+        setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` })
       } catch (error) {
-        alert(error);
+        alert(error)
       } finally {
-        setGenImg(false);
+        setGenImg(false)
       }
     } else {
-      alert("Please enter a prompt");
+      alert('Please enter a prompt')
     }
-  };
+  }
 
   const changeHandler = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(form);
-  };
+    setForm({ ...form, [e.target.name]: e.target.value })
+    console.log(form)
+  }
 
-  const [isShowing, setIsShowing] = useState(false);
+  const [isShowing, setIsShowing] = useState(false)
 
   useEffect(() => {
-    setIsShowing(true);
-  }, []);
+    setIsShowing(true)
+  }, [])
 
   return (
     <>
@@ -145,7 +145,7 @@ const CreatePost = () => {
                       onClick={generateImage}
                       className="text-white bg-green-700 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                     >
-                      {genImg ? "Generating..." : "Generate"}
+                      {genImg ? 'Generating...' : 'Generate'}
                     </button>
                   </div>
                   <div className="">
@@ -153,7 +153,7 @@ const CreatePost = () => {
                       type="submit"
                       className=" text-white bg-[#6d28d9] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                     >
-                      {loading ? "Sharing..." : "Share with the community"}
+                      {loading ? 'Sharing...' : 'Share with the community'}
                     </button>
                   </div>
                 </div>
@@ -184,10 +184,10 @@ const CreatePost = () => {
               </div>
             </div>
           </div>
-        </section>{" "}
+        </section>{' '}
       </Transition>
     </>
-  );
-};
+  )
+}
 
-export default CreatePost;
+export default CreatePost
