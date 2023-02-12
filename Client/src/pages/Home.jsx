@@ -20,7 +20,6 @@ const RenderCards = ({ data, title }) => {
 }
 
 const Home = () => {
-  console.log(import.meta.env)
   const [loading, setLoading] = useState(false)
   const [allPosts, setAllPosts] = useState(null)
   const [searchText, setSearchText] = useState(null)
@@ -28,8 +27,6 @@ const Home = () => {
   const [searchTimeout, setSerachTimeout] = useState(null)
 
   const [isShowing, setIsShowing] = useState(false)
-
-  // console.log(process.env)
 
   useEffect(() => {
     setIsShowing(true)
@@ -42,7 +39,6 @@ const Home = () => {
         import.meta.env.mode === 'production'
           ? import.meta.env.VITE_HOST
           : 'http://localhost:8080/api/v1/post'
-      console.log(apiUrl)
       try {
         const response = await fetch(apiUrl, {
           method: 'GET',

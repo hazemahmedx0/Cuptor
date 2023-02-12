@@ -83,7 +83,6 @@ const CreatePost = () => {
 
   const changeHandler = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
-    console.log(form)
   }
 
   const [isShowing, setIsShowing] = useState(false)
