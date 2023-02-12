@@ -1,6 +1,9 @@
 import express from 'express'
 import morgan from 'morgan'
 
+import postRoutes from './routes/postRoutes.js';
+import dalleRoutes from './routes/dalleRoutes.js';
+
 const app = express()
 
 if (process.env.NODE_ENV === 'development') {
