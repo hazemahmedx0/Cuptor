@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { previewimg } from '../assets'
-import { FormField, Loader } from '../Components'
+import { ErrorModal, FormField, Loader } from '../Components'
 import { getRandomPrompt } from '../utils'
 import { Transition } from '@headlessui/react'
 
@@ -17,6 +17,14 @@ const CreatePost = () => {
   const [genImg, setGenImg] = useState(false)
   const [loading, setLoading] = useState(false)
   const [alt, setAlt] = useState(null)
+  let [isOpen, setIsOpen] = useState(false)
+
+  let [popUpHeadline, setpopUpHeadline] = useState(null)
+  let [popUpText, setpopUpText] = useState(null)
+
+  function closeModal() {
+    setIsOpen(false)
+  }
 
   const submitHandler = async (e) => {
     e.preventDefault()
@@ -72,12 +80,18 @@ const CreatePost = () => {
         const data = await response.json()
         setForm({ ...form, photo: `data:image/jpeg;base64,${data.photo}` })
       } catch (error) {
-        alert('a')
+        setpopUpHeadline('Good Bad News!')
+        setpopUpText(
+          'Our Application is Still Working, but the Free Trial API Has Ended 💀🤡'
+        )
+        setIsOpen(true)
       } finally {
         setGenImg(false)
       }
     } else {
-      alert('Please enter a prompt')
+      setpopUpHeadline('Really?  😐')
+      setpopUpText('Add a name and prompt please!')
+      setIsOpen(true)
     }
   }
 
@@ -103,6 +117,13 @@ const CreatePost = () => {
         leaveTo="opacity-0"
       >
         <section className="max-w-7xl mx-auto">
+          <ErrorModal
+            isOpen={isOpen}
+            onClose={closeModal}
+            Headline={popUpHeadline}
+            Text={popUpText}
+          />
+
           <div className="grid grid-cols-2 gap-24 pt-24 px-16 max-md:grid-cols-1 ">
             <div>
               <Link to="/" className=" text-gray-300 flex flex-row gap-1 mb-6">

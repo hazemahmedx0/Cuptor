@@ -3,10 +3,6 @@ import { useState } from 'react'
 import { Card, FormField, Hero, Loader } from '../Components'
 import { Transition } from '@headlessui/react'
 
-import dotenv from 'dotenv'
-
-// dotenv.config()
-
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />)
@@ -75,6 +71,7 @@ const Home = () => {
       }, 500)
     )
   }
+
   return (
     <>
       <Transition
