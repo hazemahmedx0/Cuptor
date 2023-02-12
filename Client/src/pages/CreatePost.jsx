@@ -11,8 +11,7 @@ const CreatePost = () => {
   const [form, setForm] = useState({
     name: '',
     prompt: '',
-    photo:
-      'https://www.shutterstock.com/image-illustration/3d-shiny-red-number-collection-260nw-120044458.jpg',
+    photo: '',
   })
 
   const [genImg, setGenImg] = useState(false)
