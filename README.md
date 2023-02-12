@@ -1,2 +1,3 @@
-# Xedra
-Xedra Ai tool
+# Cuptor
+
+Cuptor Ai tool
