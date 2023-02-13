@@ -3,6 +3,8 @@
 ![image](https://user-images.githubusercontent.com/88671390/218345643-422722af-dcae-414f-9277-23607687738d.png)
 
 
+Live preview :   [Cuptor](https://cuptor.vercel.app/).
+
 Cuptor is an AI image generator that uses the OpenAI Dall-E API to create unique and creative images. This project is a full-stack application with a front-end built using Vite, React, TailwindCSS, and Headless UI and a back-end built using Node.js, Cloudinary, Express.js, and MongoDB.
 
 ## Table of Contents
