@@ -58,6 +58,20 @@ npm run dev
 cd server
 npm run start:dev
 ```
+
+### .env Example
+```
+NODE_ENV=
+PORT=
+DATABASE=
+DATABASE_PASSWORD=
+
+CLOUDINARY_CLOUD_NAME=
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+
+OPENAI_API_KEY=
+```
 ## Usage
 
 Cuptor allows users to generate unique images using a textual description. The application connects to the OpenAI Dall-E API to generate the images, which are then stored in Cloudinary for future use.
